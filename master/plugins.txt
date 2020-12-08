@@ -1,0 +1,6 @@
+swarm:latest
+pipeline-model-definition:latest
+blueocean:latest
+cucumber-reports:latest
+credentials:latest
+credentials-binding:latest

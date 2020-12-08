@@ -1,0 +1,45 @@
+version: "2"
+services:
+  master:
+    build: ./master
+    ports:
+    - "8080:8080"
+    environment:
+    - JAVA_OPTS=-Xmx2048m
+    volumes:
+    - jenkins-master:/var/jenkins_home
+
+  agent_java8:
+    build: ./agent_java8
+    environment:
+      JAVA_OPTS: "-Xmx2048m"
+      JENKINS_MASTER: "http://master:8080"
+      JENKINS_NAME: "agent-java8"
+      JENKINS_USER: "Jenkins"
+      JENKINS_PASS: "Jenkins"
+      JENKINS_RETRY: "10"
+      JENKINS_EXECUTORS: "2"
+      JENKINS_DESCRIPTION: "agent-java8"
+      JENKINS_LABELS: "java8"
+    volumes:
+    - jenkins-agent-java8:/var/jenkins_home/agent
+
+  agent_java11:
+    build: ./agent_java11
+    environment:
+      JAVA_OPTS: "-Xmx2048m"
+      JENKINS_MASTER: "http://master:8080"
+      JENKINS_NAME: "agent-java11"
+      JENKINS_USER: "Jenkins"
+      JENKINS_PASS: "Jenkins"
+      JENKINS_RETRY: "10"
+      JENKINS_EXECUTORS: "2"
+      JENKINS_DESCRIPTION: "agent-java11"
+      JENKINS_LABELS: "java11"
+    volumes:
+    - jenkins-agent-java11:/var/jenkins_home/agent
+
+volumes:
+  jenkins-master:
+  jenkins-agent-java8:
+  jenkins-agent-java11:
