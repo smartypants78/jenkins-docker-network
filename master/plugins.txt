@@ -1,5 +1,6 @@
 swarm:latest
 pipeline-model-definition:latest
+pipeline-stage-view:latest
 blueocean:latest
 cucumber-reports:latest
 credentials:latest
