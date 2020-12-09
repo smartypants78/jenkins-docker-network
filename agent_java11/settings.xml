@@ -1,86 +1,111 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
-	<!--localRepository>
-		S:\code\maven-repo
-	</localRepository-->
-
-	<interactiveMode />
-	<usePluginRegistry />
-	<offline />
-	<mirrors>
-		<mirror>
-			<id>jhc.nexus</id>
-			<name>JHC Mirror of http://repo1.maven.org/maven2/</name>
-			<url>http://nexus.jhc.co.uk/nexus/content/groups/release/</url>
-			<mirrorOf>central</mirrorOf>
-		</mirror>
-	</mirrors>
-	<proxies />
-	<profiles>
-		<profile>
-			<id>jhc.dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<distribution.snapshot.url>http://nexus.jhc.co.uk/nexus/content/repositories/snapshots</distribution.snapshot.url>
-				<distribution.release.url>http://nexus.jhc.co.uk/nexus/content/repositories/releases</distribution.release.url>
-			</properties>
-			<repositories>
-				<repository>
-					<id>jhc.dev</id>
-					<name>JHC Internal Development Repository Group</name>
-					<url>http://nexus.jhc.co.uk/nexus/content/groups/development/</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
-		<profile>
-			<id>jhc.release</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>	
-			</activation>
-			<properties>
-				<build.scm.user>releases</build.scm.user>
-				<build.scm.password>jhcjhc</build.scm.password>
-			</properties>
-			<repositories>
-				<repository>
-					<id>jhc.release</id>
-					<name>JHC Internal Release Repository Group</name>
-					<url>http://nexus.jhc.co.uk/nexus/content/groups/release/</url>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
-	</profiles>
-	<activeProfiles />
-	<servers>
-		<server>
-			<id>jhc.nexus</id>
-			<username>dev</username>
-			<password>jhcjhc</password>
-		</server>
-		<server>
-			<id>jhc.dev</id>
-			<username>dev</username>
-			<password>jhcjhc</password>
-		</server>
-		<server>
-			<id>jhc.release</id>
-			<username>dev</username>
-			<password>jhcjhc</password>
-		</server>
-		<server>
-			<id>jhc.snapshot</id>
-			<username>dev</username>
-			<password>jhcjhc</password>
-		</server>
-	</servers>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+  <localRepository/>
+  <interactiveMode/>
+  <usePluginRegistry/>
+  <offline/>
+ 
+  <proxies>
+    <proxy>
+      <active/>
+      <protocol/>
+      <username/>
+      <password/>
+      <port/>
+      <host/>
+      <nonProxyHosts/>
+      <id/>
+    </proxy>
+  </proxies>
+ 
+  <servers>
+    <server>
+      <username/>
+      <password/>
+      <privateKey/>
+      <passphrase/>
+      <filePermissions/>
+      <directoryPermissions/>
+      <configuration/>
+      <id/>
+    </server>
+  </servers>
+ 
+  <mirrors>
+    <mirror>
+      <mirrorOf/>
+      <name/>
+      <url/>
+      <layout/>
+      <mirrorOfLayouts/>
+      <id/>
+    </mirror>
+  </mirrors>
+ 
+  <profiles>
+    <profile>
+      <activation>
+        <activeByDefault/>
+        <jdk/>
+        <os>
+          <name/>
+          <family/>
+          <arch/>
+          <version/>
+        </os>
+        <property>
+          <name/>
+          <value/>
+        </property>
+        <file>
+          <missing/>
+          <exists/>
+        </file>
+      </activation>
+      <properties>
+        <key>value</key>
+      </properties>
+ 
+      <repositories>
+        <repository>
+          <releases>
+            <enabled/>
+            <updatePolicy/>
+            <checksumPolicy/>
+          </releases>
+          <snapshots>
+            <enabled/>
+            <updatePolicy/>
+            <checksumPolicy/>
+          </snapshots>
+          <id/>
+          <name/>
+          <url/>
+          <layout/>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <releases>
+            <enabled/>
+            <updatePolicy/>
+            <checksumPolicy/>
+          </releases>
+          <snapshots>
+            <enabled/>
+            <updatePolicy/>
+            <checksumPolicy/>
+          </snapshots>
+          <id/>
+          <name/>
+          <url/>
+          <layout/>
+        </pluginRepository>
+      </pluginRepositories>
+      <id/>
+    </profile>
+  </profiles>
+ 
+  <activeProfiles/>
+  <pluginGroups/>
 </settings>
