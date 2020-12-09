@@ -1,6 +1,6 @@
 FROM maven:3.6.3-openjdk-11
 
-COPY settings.xml /root/.m2/settings.xml
+COPY settings.xml /usr/share/maven/ref/
 
 ENV GOSU_VERSION=1.12 \
     SWARM_VERSION=3.23 \
