@@ -3,6 +3,7 @@ FROM maven:3.6.3-openjdk-11
 # Copy maven settings, containing repository configurations
 RUN mkdir -p /var/jenkins_home/agent/.m2
 COPY settings.xml /var/jenkins_home/agent/.m2
+COPY settings.xml /root/.m2
 
 ENV GOSU_VERSION=1.12 \
     SWARM_VERSION=3.23 \
