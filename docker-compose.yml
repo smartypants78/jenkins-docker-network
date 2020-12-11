@@ -50,7 +50,7 @@ services:
       JENKINS_RETRY: "10"
       JENKINS_EXECUTORS: "1"
       JENKINS_DESCRIPTION: "agent-docker"
-      JENKINS_LABELS: "docker scala2.12"
+      JENKINS_LABELS: "docker java11 scala2.12"
     volumes:
     - jenkins-agent-docker:/var/jenkins_home/agent
     - /var/run/docker.sock:/var/run/docker.sock 
