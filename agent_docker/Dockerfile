@@ -82,5 +82,8 @@ RUN chmod +x docker-entrypoint.sh
 VOLUME /var/jenkins_home/agent
 WORKDIR /var/jenkins_home/agent
 
+RUN gpasswd -a jenkins docker
+RUN newgrp docker
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["java", "-jar", "/bin/swarm-client.jar"]
