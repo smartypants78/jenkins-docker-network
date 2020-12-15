@@ -3,6 +3,26 @@ FROM maven:3.6.3-openjdk-11
 # Copy maven settings, containing repository configurations
 RUN mkdir -p /var/jenkins_home/agent/.m2
 COPY settings.xml /var/jenkins_home/agent/.m2
+COPY settings.xml /root/.m2
+
+# Switch to `bash -c` as the shell behind a `RUN` command.
+SHELL ["/bin/bash", "-c"]
+
+# Usual updates
+RUN apt-get update && apt-get upgrade -y
+# Dependencies for sdkman installation
+RUN apt-get install curl bash unzip zip -y
+# Install sdkman and use to add scala & sbt
+RUN curl -s "https://get.sdkman.io" | bash
+RUN source "$HOME/.sdkman/bin/sdkman-init.sh" \
+    && sdk install sbt 1.4.2 \
+    && sdk install scala 2.12.12
+# Add the scala & sbt binaries to the path 
+ENV PATH=/root/.sdkman/candidates/scala/current/bin:$PATH
+ENV PATH=/root/.sdkman/candidates/sbt/current/bin:$PATH
+
+# Switch back to `sh -c` as the shell behind a `RUN` command.
+SHELL ["/bin/sh", "-c"]
 
 ENV GOSU_VERSION=1.12 \
     SWARM_VERSION=3.23 \
