@@ -4,6 +4,7 @@ services:
     build: ./master
     ports:
     - "8888:8080"
+    - "50000:50000"
     environment:
     - JAVA_OPTS=-Xmx2048m
     volumes:
@@ -41,16 +42,17 @@ services:
 
   agent_docker:
     build: ./agent_docker
+    network_mode: host 
     environment:
       JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://master:8080"
+      JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-docker"
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
       JENKINS_RETRY: "10"
       JENKINS_EXECUTORS: "1"
       JENKINS_DESCRIPTION: "agent-docker"
-      JENKINS_LABELS: "docker java11 scala12" 
+      JENKINS_LABELS: "docker java11 scala12"    
     volumes:
     - jenkins-agent-docker:/var/jenkins_home/agent
     - /var/run/docker.sock:/var/run/docker.sock
