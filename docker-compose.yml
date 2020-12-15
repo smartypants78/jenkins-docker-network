@@ -12,9 +12,10 @@ services:
 
   agent_java8:
     build: ./agent_java8
+    network_mode: host 
     environment:
       JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://master:8080"
+      JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java8"
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
@@ -27,9 +28,10 @@ services:
 
   agent_java11:
     build: ./agent_java11
+    network_mode: host 
     environment:
       JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://master:8080"
+      JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java11"
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
