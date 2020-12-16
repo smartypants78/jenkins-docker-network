@@ -20,7 +20,7 @@ services:
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
       JENKINS_RETRY: "10"
-      JENKINS_EXECUTORS: "1"
+      JENKINS_EXECUTORS: "2"
       JENKINS_DESCRIPTION: "agent-java8"
       JENKINS_LABELS: "java8"
     volumes:
@@ -37,7 +37,7 @@ services:
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
       JENKINS_RETRY: "10"
-      JENKINS_EXECUTORS: "1"
+      JENKINS_EXECUTORS: "2"
       JENKINS_DESCRIPTION: "agent-java11"
       JENKINS_LABELS: "java11"
     volumes:
