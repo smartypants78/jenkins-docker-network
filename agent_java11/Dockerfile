@@ -24,6 +24,30 @@ ENV PATH=/root/.sdkman/candidates/sbt/current/bin:$PATH
 # Switch back to `sh -c` as the shell behind a `RUN` command.
 SHELL ["/bin/sh", "-c"]
 
+# Install Docker
+RUN apt-get update -y
+RUN apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN apt-key fingerprint 0EBFCD88
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+RUN apt-get update -y
+RUN apt-get install -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io
+
+# Install Docker Compose
+RUN curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+
 ENV GOSU_VERSION=1.12 \
     SWARM_VERSION=3.23 \
     MD5=5507abb36d6ca8b01f3416ef21758c9d \
@@ -57,6 +81,9 @@ RUN chmod +x docker-entrypoint.sh
 
 VOLUME /var/jenkins_home/agent
 WORKDIR /var/jenkins_home/agent
+
+RUN gpasswd -a jenkins docker
+RUN newgrp docker
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["java", "-jar", "/bin/swarm-client.jar"]

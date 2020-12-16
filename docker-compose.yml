@@ -20,11 +20,12 @@ services:
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
       JENKINS_RETRY: "10"
-      JENKINS_EXECUTORS: "1"
+      JENKINS_EXECUTORS: "2"
       JENKINS_DESCRIPTION: "agent-java8"
-      JENKINS_LABELS: "java8 scala12"
+      JENKINS_LABELS: "java8"
     volumes:
     - jenkins-agent-java8:/var/jenkins_home/agent
+    - /var/run/docker.sock:/var/run/docker.sock
 
   agent_java11:
     build: ./agent_java11
@@ -36,31 +37,14 @@ services:
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
       JENKINS_RETRY: "10"
-      JENKINS_EXECUTORS: "1"
+      JENKINS_EXECUTORS: "2"
       JENKINS_DESCRIPTION: "agent-java11"
-      JENKINS_LABELS: "java11 scala12"
+      JENKINS_LABELS: "java11"
     volumes:
     - jenkins-agent-java11:/var/jenkins_home/agent
-
-  agent_docker:
-    build: ./agent_docker
-    network_mode: host 
-    environment:
-      JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://localhost:8888"
-      JENKINS_NAME: "agent-docker"
-      JENKINS_USER: "Jenkins"
-      JENKINS_PASS: "Jenkins"
-      JENKINS_RETRY: "10"
-      JENKINS_EXECUTORS: "1"
-      JENKINS_DESCRIPTION: "agent-docker"
-      JENKINS_LABELS: "docker java11 scala12"    
-    volumes:
-    - jenkins-agent-docker:/var/jenkins_home/agent
     - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   jenkins-master:
   jenkins-agent-java8:
   jenkins-agent-java11:
-  jenkins-agent-docker:
