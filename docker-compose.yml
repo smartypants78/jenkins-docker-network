@@ -3,7 +3,8 @@ services:
   master:
     build: ./master
     ports:
-    - "8080:8080"
+    - "8888:8080"
+    - "50000:50000"
     environment:
     - JAVA_OPTS=-Xmx2048m
     volumes:
@@ -11,9 +12,10 @@ services:
 
   agent_java8:
     build: ./agent_java8
+    network_mode: host 
     environment:
       JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://master:8080"
+      JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java8"
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
@@ -23,12 +25,14 @@ services:
       JENKINS_LABELS: "java8 scala12"
     volumes:
     - jenkins-agent-java8:/var/jenkins_home/agent
+    - /var/run/docker.sock:/var/run/docker.sock
 
   agent_java11:
     build: ./agent_java11
+    network_mode: host 
     environment:
       JAVA_OPTS: "-Xmx2048m"
-      JENKINS_MASTER: "http://master:8080"
+      JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java11"
       JENKINS_USER: "Jenkins"
       JENKINS_PASS: "Jenkins"
@@ -38,6 +42,7 @@ services:
       JENKINS_LABELS: "java11 scala12"
     volumes:
     - jenkins-agent-java11:/var/jenkins_home/agent
+    - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   jenkins-master:
