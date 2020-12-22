@@ -14,7 +14,7 @@ services:
     build: ./agent_java8
     network_mode: host 
     environment:
-      JAVA_OPTS: "-Xmx2048m"
+      JAVA_OPTS: "-Xms2048m -Xmx2048m -XX:MaxPermSize=512m"
       JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java8"
       JENKINS_USER: "Jenkins"
@@ -31,7 +31,7 @@ services:
     build: ./agent_java11
     network_mode: host 
     environment:
-      JAVA_OPTS: "-Xmx2048m"
+      JAVA_OPTS: "-Xms2048m -Xmx2048m -XX:MaxPermSize=512m"
       JENKINS_MASTER: "http://localhost:8888"
       JENKINS_NAME: "agent-java11"
       JENKINS_USER: "Jenkins"
