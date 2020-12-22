@@ -6,7 +6,7 @@ services:
     - "8888:8080"
     - "50000:50000"
     environment:
-    - JAVA_OPTS=-Xmx2048m
+      JAVA_OPTS: "-Xms2048m -Xmx2048m -XX:MaxPermSize=512m"
     volumes:
     - jenkins-master:/var/jenkins_home
 
