@@ -9,4 +9,4 @@ Initially you will need to connect to the master on localhost:8888 and go throug
 
 Part of the setup requires you to get the initial login token from inside the master container at the location specified on the setup page.
 
-The host command 'sudo chmod 666 /var/run/docker.sock' will provide the required access to the host docker socket. You will need to do this each time you restart things, but is only required if you want the agents to run things that use docker themselves.
+The host command 'sudo chmod 666 /var/run/docker.sock' will provide the required access to the host docker socket. You will need to do this each time you restart the host distribution, but is only required if you want the agents to run things that use docker themselves.
