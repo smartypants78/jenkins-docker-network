@@ -1,7 +1,7 @@
 # jenkins-docker-network
 
 Lets you run Jenkins and Agents locally with docker-compose.
-Both agents have maven 3.63, scala 2.12.12, and sbt 1.4.2 installed.
+Both agents have maven 3.6.3, scala 2.12.12, and sbt 1.4.2 installed.
 One agent has openjdk-8 and the other openjdk-11.
 The agents can also use docker themselves, via a map to the host docker socket.
 
